@@ -60,12 +60,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^aokp_") ; then
-       AOKP_PRODUCT=$(echo -n $1 | sed -e 's/^aokp_//g')
+    if (echo -n $1 | grep -q -e "^AK47_") ; then
+       AK47_PRODUCT=$(echo -n $1 | sed -e 's/^AK47_//g')
     else
-       AOKP_PRODUCT=
+       AK47_PRODUCT=
     fi
-      export AOKP_PRODUCT
+      export AK47_PRODUCT
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
@@ -449,7 +449,7 @@ function print_lunch_menu()
     echo
     echo "You're building on" $uname
     echo
-    if [ "z${AOKP_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${AK47_DEVICES_ONLY}" != "z" ]; then
        echo "Breakfast menu... pick a combo:"
     else
        echo "Lunch menu... pick a combo:"
@@ -463,7 +463,7 @@ function print_lunch_menu()
         i=$(($i+1))
     done
 
-    if [ "z${AOKP_DEVICES_ONLY}" != "z" ]; then
+    if [ "z${AK47_DEVICES_ONLY}" != "z" ]; then
        echo "... and don't forget the bacon!"
     fi
 
@@ -485,10 +485,10 @@ function brunch()
 function breakfast()
 {
     target=$1
-    AOKP_DEVICES_ONLY="true"
+    AK47_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/aokp/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/AK47/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -504,8 +504,8 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the AOKP model name
-            lunch aokp_$target-userdebug
+            # This is probably just the AK47 model name
+            lunch AK47_$target-userdebug
         fi
     fi
     return $?
@@ -1414,9 +1414,9 @@ retval=0
             ;;
     esac
 if [ $retval -eq 0 ]; then
-    notify-send "AOKP" "$TARGET_PRODUCT build completed." -i $(gettop)/build/buildwin.png -t 10000
+    notify-send "AK47" "$TARGET_PRODUCT build completed." -i $(gettop)/build/buildwin.png -t 10000
 else
-    notify-send "AOKP" "$TARGET_PRODUCT build FAILED." -i $(gettop)/build/buildfailed.png -t 10000
+    notify-send "AK47" "$TARGET_PRODUCT build FAILED." -i $(gettop)/build/buildfailed.png -t 10000
 fi
 return $retval
 }
@@ -1424,7 +1424,7 @@ return $retval
 function mbot() {
     unset LUNCH_MENU_CHOICES
     croot
-    ./vendor/aokp/bot/deploy.sh
+    ./vendor/AK47/bot/deploy.sh
 }
 
 function mkapush() {
