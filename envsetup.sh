@@ -60,12 +60,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^AK47_") ; then
-       AK47_PRODUCT=$(echo -n $1 | sed -e 's/^AK47_//g')
+    if (echo -n $1 | grep -q -e "^A13_") ; then
+       A13_PRODUCT=$(echo -n $1 | sed -e 's/^AK47_//g')
     else
-       AK47_PRODUCT=
+       A13_PRODUCT=
     fi
-      export AK47_PRODUCT
+      export A13_PRODUCT
 
     CALLED_FROM_SETUP=true BUILD_SYSTEM=build/core \
         TARGET_PRODUCT=$1 \
